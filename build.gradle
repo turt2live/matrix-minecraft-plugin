@@ -1,0 +1,81 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.spongepowered.plugin' version '0.8.1'
+    id 'com.github.johnrengelman.shadow' version '2.0.0'
+}
+
+group 'io.t2l.matrix'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+    maven { url 'https://repo.glowstone.net/service/local/repositories/central/content' }
+    maven { url 'http://nexus.hc.to/content/repositories/pub_releases' }
+    maven { url 'http://repo.bstats.org/content/repositories/releases/' }
+    maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' }
+    maven { url 'https://repo.spongepowered.org/maven' }
+    maven { url 'http://ci.t2l.io:8081/artifactory/gradle-dev-local/' }
+}
+
+sourceSets {
+    main {
+        java { srcDirs = ['src/main/java'] }
+        resources { srcDirs = ['src/main/resources'] }
+    }
+}
+
+shadowJar {
+    baseName = "MatrixBridge"
+    classifier = null
+    version = null
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+    dependencies {
+        include(dependency('org.bstats:bstats-bukkit'))
+        include(dependency('io.t2l:EventEmitter'))
+    }
+    relocate 'org.bstats', 'io.t2l.matrix.minecraft.libs.org.bstats'
+    relocate 'io.t2l.events', 'io.t2l.matrix.minecraft.libs.io.t2l.events'
+}
+
+sponge {
+    plugin {
+        id = 'matrix-bridge'
+        meta {
+            name = 'Matrix Bridge'
+            description = 'Plugin to bridge Matrix and Minecraft chat'
+        }
+    }
+}
+
+dependencies {
+    // Note: Always use lowest compatible level for API to ensure new features don't get accidentally used.
+    compile 'net.glowstone:glowkit:1.11-R0.1-SNAPSHOT'
+    compile 'org.spongepowered:spongeapi:5.1.0'
+
+    // Plugin dependencies
+    compile 'net.milkbowl.vault:VaultAPI:1.6'
+    compile 'org.bstats:bstats-bukkit:1.1'
+    compile 'io.t2l:EventEmitter:1.0.0'
+
+    // Test requirements
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4.1'
+}
