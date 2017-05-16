@@ -9,7 +9,7 @@ import java.util.Collection;
 
 /**
  * Represents a collection of rooms. Useful for when multiple rooms need the same
- * action to be performed on them.<br/>
+ * action to be performed on them.<br>
  * Emits the following events:
  * <ul>
  * <li>"message" - MessageEvent</li>

@@ -7,7 +7,7 @@ import io.t2l.matrix.minecraft.compat.MinecraftPlayer;
 import java.util.Collection;
 
 /**
- * Represents a Room on Matrix.<br/>
+ * Represents a Room on Matrix.<br>
  * Should emit the following events:
  * <ul>
  *     <li>"message" - MessageEvent</li>
