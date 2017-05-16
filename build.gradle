@@ -50,6 +50,8 @@ shadowJar {
     }
     relocate 'org.bstats', 'io.t2l.matrix.minecraft.libs.org.bstats'
     relocate 'io.t2l.events', 'io.t2l.matrix.minecraft.libs.io.t2l.events'
+    relocate 'io.socket', 'io.t2l.matrix.minecraft.libs.io.socket'
+    relocate 'org.json', 'io.t2l.matrix.minecraft.libs.org.json'
 }
 
 sponge {
