@@ -71,6 +71,7 @@ dependencies {
     compile 'net.milkbowl.vault:VaultAPI:1.6'
     compile 'org.bstats:bstats-bukkit:1.1'
     compile 'io.t2l:EventEmitter:1.0.0'
+    compile 'io.socket:socket.io-client:0.8.3'
 
     // Test requirements
     testCompile group: 'junit', name: 'junit', version: '4.11'

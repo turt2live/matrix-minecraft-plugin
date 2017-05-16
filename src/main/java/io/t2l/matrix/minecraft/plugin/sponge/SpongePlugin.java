@@ -1,4 +1,4 @@
-package io.t2l.matrix.minecraft.plugin;
+package io.t2l.matrix.minecraft.plugin.sponge;
 
 
 import com.google.inject.Inject;

@@ -1,5 +1,7 @@
-package io.t2l.matrix.minecraft.plugin;
+package io.t2l.matrix.minecraft.plugin.bukkit;
 
+import io.t2l.matrix.minecraft.matrix.MatrixBridge;
+import io.t2l.matrix.minecraft.matrix.bridge.hosted.HostedBridge;
 import net.milkbowl.vault.chat.Chat;
 import org.bstats.Metrics;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -14,6 +16,7 @@ public class BukkitPlugin extends JavaPlugin {
 
     private static final Logger log = Logger.getLogger(BukkitPlugin.class.getName());
     private Chat chat = null;
+    private MatrixBridge bridge;
 
     @Override
     public void onEnable() {
@@ -26,6 +29,20 @@ public class BukkitPlugin extends JavaPlugin {
         }
 
         setupMetrics();
+        setupConfiguration();
+        setupBridge();
+
+        this.getServer().getPluginManager().registerEvents(new ChatListener(this.bridge), this);
+    }
+
+    private void setupBridge() {
+        switch (this.getConfig().getString("bridgeType")) {
+            case "hosted":
+                this.bridge = new HostedBridge(this.getConfig().getString("hostedBridge.connectionUrl"), this.getConfig().getString("hostedBridge.token"));
+                return;
+            default:
+                throw new IllegalArgumentException("Unknown bridge type: " + this.getConfig().getString("bridgeType"));
+        }
     }
 
     private void setupConfiguration() {
@@ -52,6 +69,10 @@ public class BukkitPlugin extends JavaPlugin {
     }
 
     public Chat getChat() {
-        return chat;
+        return this.chat;
+    }
+
+    public MatrixBridge getBridge() {
+        return this.bridge;
     }
 }

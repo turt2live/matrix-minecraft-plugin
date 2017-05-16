@@ -36,14 +36,14 @@ public interface MatrixRoom extends EventEmitter {
      * Sends a message to the matrix room as a given player. The player will be
      * added to the room if they are not already in it.
      *
-     * @param player  the player that sent the message
-     * @param message the message to send
+     * @param player  the player that sent the message; cannot be null
+     * @param message the message to send; cannot be null
      */
     void sendMessage(MinecraftPlayer player, ChatMessage message);
 
     /**
      * Sets the players to be considered members of the matrix room. The bridge will synchronize the membership
-     * list to be these players.
+     * list to be these players. A null or empty collection will remove all members.
      *
      * @param players the players that are intended to be participating in the room
      */
@@ -52,14 +52,14 @@ public interface MatrixRoom extends EventEmitter {
     /**
      * Adds a player to the membership list, if they have not already been added
      *
-     * @param player the player to add to the room
+     * @param player the player to add to the room; cannot be null
      */
     void addPlayer(MinecraftPlayer player);
 
     /**
      * Removes a player from the membership list, if they have not already been removed
      *
-     * @param player the player to remove from the room
+     * @param player the player to remove from the room; cannot be null
      */
     void removePlayer(MinecraftPlayer player);
 }

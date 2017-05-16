@@ -1,0 +1,2 @@
+This style of bridge will use a hosted bridge service to manage the bridge. This is when matrix-appservice-minecraft is
+running on a known homeserver, optionally with security features to prevent random plugin attachments.

@@ -12,21 +12,24 @@ import java.util.Collection;
  * action to be performed on them.<br/>
  * Emits the following events:
  * <ul>
- *     <li>"message" - MessageEvent</li>
- *     <li>"emote" - EmoteEvent</li>
+ * <li>"message" - MessageEvent</li>
+ * <li>"emote" - EmoteEvent</li>
  * </ul>
+ *
  * @see io.t2l.matrix.minecraft.matrix.event.MessageEvent
  * @see io.t2l.matrix.minecraft.matrix.event.EmoteEvent
  */
 public class MatrixRoomCollection extends EventEmitterImpl {
 
-    private ArrayList<MatrixRoom> rooms;
+    private ArrayList<MatrixRoom> rooms = new ArrayList<>();
 
     /**
      * Creates a new matrix room collection
+     *
      * @param rooms the rooms to be part of the collection
      */
     public MatrixRoomCollection(MatrixRoom... rooms) {
+        if (rooms == null) return;
         for (MatrixRoom room : rooms) {
             this.rooms.add(room);
         }
@@ -34,9 +37,11 @@ public class MatrixRoomCollection extends EventEmitterImpl {
 
     /**
      * Creates a new matrix room collection
+     *
      * @param rooms the rooms to be part of the collection
      */
     public MatrixRoomCollection(Collection<MatrixRoom> rooms) {
+        if (rooms == null) return;
         this.rooms.addAll(rooms);
     }
 

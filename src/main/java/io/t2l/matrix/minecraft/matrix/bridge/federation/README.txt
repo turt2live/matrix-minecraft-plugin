@@ -1,0 +1,1 @@
+This style of bridge will have it's own built-in federation and act as a limited homeserver in the network.

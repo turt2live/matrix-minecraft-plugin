@@ -3,5 +3,5 @@ version: 1.0-SNAPSHOT
 description: Bridges chat from your Minecraft server to Matrix
 author: Travis Ralston (turt2live)
 website: https://github.com/turt2live
-main: io.t2l.matrix.minecraft.plugin.BukkitPlugin
+main: io.t2l.matrix.minecraft.plugin.bukkit.BukkitPlugin
 depend: ['Vault']

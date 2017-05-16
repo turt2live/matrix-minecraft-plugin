@@ -1,0 +1,4 @@
+bridgeType: hosted # 'hosted' is the only supported bridge, so far
+hostedBridge:
+  connectionUrl: "https://minecraft.t2bot.io/"
+  token: "free"
