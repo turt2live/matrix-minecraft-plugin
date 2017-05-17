@@ -29,7 +29,7 @@ public class HostedBridge implements MatrixBridge {
         IO.Options options = new IO.Options();
         options.forceNew = true;
         options.reconnection = true;
-        options.reconnectionAttempts = -1; // forever
+        options.reconnectionAttempts = 0; // forever
         options.query = "auth=" + token;
 
         try {
