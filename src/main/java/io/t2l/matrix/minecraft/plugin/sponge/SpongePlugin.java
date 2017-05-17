@@ -2,6 +2,7 @@ package io.t2l.matrix.minecraft.plugin.sponge;
 
 
 import com.google.inject.Inject;
+import org.bstats.sponge.Metrics;
 import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
@@ -14,9 +15,19 @@ import java.util.logging.Logger;
 @Plugin(id = "matrix-bridge") // other parameters are set in mcmod.info
 public class SpongePlugin {
 
-    @Inject @ConfigDir(sharedRoot = false) private Path configDir;
-    @Inject @ConfigDir(sharedRoot = true) private Path mainDir;
-    @Inject private Logger logger;
+    @Inject
+    @ConfigDir(sharedRoot = false)
+    private Path configDir;
+
+    @Inject
+    @ConfigDir(sharedRoot = true)
+    private Path mainDir;
+
+    @Inject
+    private Logger logger;
+
+    @Inject
+    private Metrics metrics;
 
     @Listener
     public void onServerStart(GameStartedServerEvent event) {
@@ -29,7 +40,12 @@ public class SpongePlugin {
 
     }
 
-    private void setupConfiguration(){
+    private void setupMetrics() {
+        logger.info("Setting up metrics...");
+        // TODO: Custom graphs
+    }
+
+    private void setupConfiguration() {
         // TODO: Some code to actually load a default config
         // Resource: https://github.com/SpongePowered/Cookbook/blob/master/Plugin/ConfigDatabase/src/main/java/org/spongepowered/cookbook/plugin/configdatabase/ConfigDatabase.java
         // Resource: https://docs.spongepowered.org/stable/en/plugin/configuration/loaders.html#example-loading-a-default-config-from-the-plugin-jar-file

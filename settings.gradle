@@ -1,2 +1,5 @@
 rootProject.name = 'minecraft-plugin'
+include 'bstats-bukkit-custom'
+include 'bstats-sponge-custom'
+include 'bstats-bungeecord-custom'
 

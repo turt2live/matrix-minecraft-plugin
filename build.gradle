@@ -29,6 +29,7 @@ repositories {
     maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' }
     maven { url 'https://repo.spongepowered.org/maven' }
     maven { url 'http://ci.t2l.io:8081/artifactory/gradle-dev-local/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 sourceSets {
@@ -45,7 +46,9 @@ shadowJar {
     exclude 'META-INF/*.DSA'
     exclude 'META-INF/*.RSA'
     dependencies {
-        include(dependency('org.bstats:bstats-bukkit'))
+        include(project('bstats-bukkit-custom'))
+        include(project('bstats-sponge-custom'))
+        include(project('bstats-bungeecord-custom'))
         include(dependency('io.t2l:EventEmitter'))
     }
     relocate 'org.bstats', 'io.t2l.matrix.minecraft.libs.org.bstats'
@@ -68,10 +71,13 @@ dependencies {
     // Note: Always use lowest compatible level for API to ensure new features don't get accidentally used.
     compile 'net.glowstone:glowkit:1.11-R0.1-SNAPSHOT'
     compile 'org.spongepowered:spongeapi:5.1.0'
+    compile 'net.md-5:bungeecord-api:1.10-SNAPSHOT'
 
     // Plugin dependencies
     compile 'net.milkbowl.vault:VaultAPI:1.6'
-    compile 'org.bstats:bstats-bukkit:1.1'
+    compile project(path: 'bstats-bukkit-custom', configuration: 'shadow')
+    compile project(path: 'bstats-sponge-custom', configuration: 'shadow')
+    compile project(path: 'bstats-bungeecord-custom', configuration: 'shadow')
     compile 'io.t2l:EventEmitter:1.0.0'
     compile 'io.socket:socket.io-client:0.8.3'
 
