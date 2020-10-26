@@ -1,3 +1,9 @@
+# THIS PROJECT IS ABANDONED
+
+You're welcome to try and revive it, but to be honest you're better off starting from scratch.
+
+No maintenance is planned for this project.
+
 # matrix-minecraft-plugin
 Plugin to be paired with [matrix-appservice-minecraft](https://github.com/turt2live/matrix-appservice-minecraft) for enhanced chat and functionality.
 
